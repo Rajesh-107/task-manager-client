@@ -1,10 +1,12 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Dashboard from './components/Dashboard/Dashboard';
+
+import FullscreenLoader from './components/MasterLayout/FullScreenLoadder';
 import Canceledpage from './pages/Canceledpage';
 import CompletedPage from './pages/CompletedPage';
 import CreatePage from './pages/CreatePage';
+import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import NewPage from './pages/NewPage';
 import NotFound from './pages/NotFound';
@@ -17,7 +19,7 @@ function App() {
     <>
      <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Dashboard></Dashboard>}></Route>
+        <Route path='/' element={<DashboardPage></DashboardPage>}></Route>
         <Route path='/Create' element={<CreatePage></CreatePage>}></Route>
         <Route path='/All' element={<NewPage></NewPage>}></Route>
         <Route path='/Progress' element={<ProgressPage></ProgressPage>}></Route>
@@ -30,6 +32,7 @@ function App() {
         
       </Routes>
      </BrowserRouter>
+     <FullscreenLoader/>
     </>
   );
 }

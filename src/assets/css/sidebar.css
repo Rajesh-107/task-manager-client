@@ -108,6 +108,7 @@
     display: inline-block;
     padding: 12px 5px 12px 5px;
     width: 100% !important;
+    text-decoration: none !important;
 }
 .side-bar-item:hover{
     border-left: 4px solid #CB0C9F;
@@ -137,6 +138,7 @@
     margin-left: 5px;
     font-weight: 500;
     color: #363B64;
+    
 }
 
 

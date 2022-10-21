@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
-const FullScreenLoadder = () => {
+
+const FullscreenLoader = () => {
+    // const loader = useSelector((state) => state.settings.loader)
     return (
-        <div>
-            
-        </div>
+        <Fragment>
+            <div className={"LoadingOverlay d-none"}>
+                <div className="Line-Progress">
+                    <div className="indeterminate"></div>
+                </div>
+            </div>
+        </Fragment>
     );
 };
-
-export default FullScreenLoadder;
+export default FullscreenLoader;

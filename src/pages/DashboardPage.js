@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import LazyLoader from '../components/MasterLayout/LazyLoader';
+import MasterLayout from '../components/MasterLayout/MasterLayout';
 
 const DashboardPage = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <MasterLayout>
+                <Suspense fallback={<LazyLoader/>}>
+
+                </Suspense>
+            </MasterLayout>
+        </>
     );
 };
 
