@@ -7,12 +7,14 @@ import Canceledpage from './pages/Canceledpage';
 import CompletedPage from './pages/CompletedPage';
 import CreatePage from './pages/CreatePage';
 import DashboardPage from './pages/DashboardPage';
+import ForgetPassPage from './pages/ForgetPassPage';
 import LoginPage from './pages/LoginPage';
 import NewPage from './pages/NewPage';
 import NotFound from './pages/NotFound';
 import ProfilePage from './pages/ProfilePage';
 import ProgressPage from './pages/ProgressPage';
-import Registration from './pages/Registration';
+import RegistrationPage from './pages/RegistrationPage';
+
 
 function App() {
   return (
@@ -27,7 +29,8 @@ function App() {
         <Route path='/Canceled' element={<Canceledpage></Canceledpage>}></Route>
         <Route path='/Profile' element={<ProfilePage></ProfilePage>}></Route>
         <Route path='/Login' element={<LoginPage></LoginPage>}></Route>
-        <Route path='/Registration' element={<Registration></Registration>}></Route>
+        <Route path='/Registration' element={<RegistrationPage></RegistrationPage>}></Route>
+        <Route path='/Forgetpass' element={<ForgetPassPage></ForgetPassPage>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
         
       </Routes>
