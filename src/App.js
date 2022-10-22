@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound';
 import ProfilePage from './pages/ProfilePage';
 import ProgressPage from './pages/ProgressPage';
 import RegistrationPage from './pages/RegistrationPage';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
       </Routes>
      </BrowserRouter>
      <FullscreenLoader/>
+     <ToastContainer/>
     </>
   );
 }
