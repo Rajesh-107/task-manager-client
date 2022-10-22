@@ -1,4 +1,4 @@
-import {  toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 let EmailRegx = /\S+@\S+\.\S+/;
 let MobileRegx = /(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/;
 
@@ -20,3 +20,11 @@ class FormHelper {
         toast.success(msg, {position: "bottom-center"})
     }
 }
+export const {
+    IsEmpty,
+    IsMobile,
+    IsEmail,
+    ErrorToast,
+    SuccessToast
+} = new FormHelper();
+<ToastContainer/>

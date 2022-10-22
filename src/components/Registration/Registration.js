@@ -1,4 +1,7 @@
 import React, { useRef } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { RegistrationRequest } from "../../APIRequest/APIRequest";
+import { ErrorToast, IsEmail, IsEmpty, IsMobile } from "../../Helper/FormHelper";
 
 const Registration = () => {
   let emailRef,
@@ -13,6 +16,26 @@ const Registration = () => {
     let lastName = lastNameRef.value;
     let mobile = mobileRef.value;
     let password = passwordRef.value;
+
+    if(IsEmail(email)){
+        ErrorToast("Valid Email Address required!")
+    }
+    else if(IsEmpty(firstName)){
+        ErrorToast("Valid firstName required!")
+    }
+    else if(IsEmpty(lastName)){
+        ErrorToast("Valid lastName required!")
+    }
+    else if(!IsMobile(mobile)){
+        ErrorToast("Valid Mobile required!")
+    }
+    else if(IsEmpty(mobile)){
+        ErrorToast("Valid password required!")
+    }
+    else{
+        RegistrationRequest(email, firstName, lastName, mobile,password, "")
+    }
+
   };
   return (
     <>
@@ -88,6 +111,7 @@ const Registration = () => {
             </div>
           </div>
         </div>
+        <ToastContainer/>
       </div>
     </>
   );
