@@ -1,9 +1,32 @@
 import axios from "axios";
 import { ErrorToast, SuccessToast } from "../Helper/FormHelper";
-import { setToken, setUserDetails } from "../Helper/SessionHelper";
+import { getToken, setToken, setUserDetails } from "../Helper/SessionHelper";
 
+const AxiosHeader = {headers: {"token": getToken()}}
 
 const BaseURL = "https://task-manager-server-rosy.vercel.app/api/v1";
+
+export function NewTaskRequest(title, description){
+  let URL = BaseURL+ "/createTask";
+  let PostBody = {"title": title, "description":description, status: "New"}
+
+  return axios.post(URL, PostBody,AxiosHeader).then(res => {
+
+    if(res.status === 200){
+    
+      SuccessToast("New Task Created")
+      return true;
+    }
+    else{
+      ErrorToast("Something went wrong")
+      return false
+    }
+
+  }).catch((err) => {
+    ErrorToast('Something not good')
+    return false;
+  })
+}
 
 export function LoginRequest(email, password){
   let URL = BaseURL+ "/UserLogin";
