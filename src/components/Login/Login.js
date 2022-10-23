@@ -8,15 +8,15 @@ const Login = () => {
 
   const submitLogin = () => {
     let email = emailRef.value;
-    let pass = passRef.value;
+    let password = passRef.value;
     if(IsEmail(email)){
       ErrorToast("Invalid Email address")
     }
-    else if(IsEmpty(pass)){
+    else if(IsEmpty(password)){
       ErrorToast("Password Required")
     }
     else{
-      LoginRequest(email, pass).then((result) => {
+      LoginRequest(email, password).then((result) => {
         if(result === true){
           window.location.href="/"
         }

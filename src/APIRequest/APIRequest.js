@@ -1,8 +1,7 @@
 import axios from "axios";
 import { ErrorToast, SuccessToast } from "../Helper/FormHelper";
 import { setToken, setUserDetails } from "../Helper/SessionHelper";
-import { HideLoader, ShowLoader } from "../redux/slice/Settingslice";
-import Store from "../redux/store/Store";
+
 
 const BaseURL = "https://task-manager-server-rosy.vercel.app/api/v1";
 
