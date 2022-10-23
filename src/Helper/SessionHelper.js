@@ -12,3 +12,4 @@ class SessionHelper {
         return JSON.parse(localStorage.getItem("UserDetails"))
     }
 }
+export const {setToken, setUserDetails, getToken, getUserDetails} = new SessionHelper()
