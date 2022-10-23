@@ -21,7 +21,7 @@ import { getToken } from './Helper/SessionHelper';
 
 function App() {
 
-  if(getToken){
+  if(getToken()){
     return (
       <>
        <BrowserRouter>
@@ -33,7 +33,7 @@ function App() {
           <Route path='/Completed' element={<CompletedPage></CompletedPage>}></Route>
           <Route path='/Canceled' element={<Canceledpage></Canceledpage>}></Route>
           <Route path='/Profile' element={<ProfilePage></ProfilePage>}></Route>
-       
+          <Route path='*' element={<NotFound></NotFound>}></Route>
           
           
         </Routes>
