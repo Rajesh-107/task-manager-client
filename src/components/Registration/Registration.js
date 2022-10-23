@@ -33,7 +33,11 @@ const Registration = () => {
         ErrorToast("Valid password required!")
     }
     else{
-        RegistrationRequest(email, firstName, lastName, mobile,password, "")
+        RegistrationRequest(email, firstName, lastName, mobile,password, "").then((result) =>{
+            if(result === true){
+                
+            }
+        })
     }
 
   };

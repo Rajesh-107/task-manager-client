@@ -24,7 +24,7 @@ export function RegistrationRequest(
     if(res.status===200){
         if(res.data['status']==="fail"){
             if(res.data['data']['keyPattern']['email']===1){
-                ErrorToast("Email Already Exist")
+                ErrorToast("Sorry This email already taken")
                 return false;
             }
             else{
@@ -43,7 +43,7 @@ export function RegistrationRequest(
     }
 
   }).catch((err) => {
-    ErrorToast("Something not good")
+    ErrorToast("Something Went Wrong")
     return false;
   })
 }
