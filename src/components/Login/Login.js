@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { LoginRequest } from "../../APIRequest/APIRequest";
+import { ErrorToast, IsEmail, IsEmpty } from "../../Helper/FormHelper";
 
 const Login = () => {
+  let passRef, emailRef = useRef();
+
+  const submitLogin = () => {
+    let email = emailRef.value;
+    let pass = passRef.value;
+    if(IsEmail(email)){
+      ErrorToast("Invalid Email address")
+    }
+    else if(IsEmpty(pass)){
+      ErrorToast("Password Required")
+    }
+    else{
+      LoginRequest(email, pass).then((result) => {
+        if(result === true){
+          window.location.href="/"
+        }
+      })
+    }
+  }
+
+
   return (
     <>
       <div className="container">
@@ -12,18 +35,22 @@ const Login = () => {
                 <h4>SIGN IN</h4>
                 <br />
                 <input
+                ref={(input) => emailRef=input}
                   placeholder="User Email"
                   className="form-control animated fadeInUp"
                   type="email"
                 />
                 <br />
                 <input
+                ref={(input) => passRef=input}
                   placeholder="User Password"
                   className="form-control animated fadeInUp"
                   type="password"
                 />
                 <br />
-                <button className="btn w-100 animated fadeInUp float-end btn-primary">
+                <button
+                onClick={submitLogin}
+                className="btn w-100 animated fadeInUp float-end btn-primary">
                   Next
                 </button>
                 <hr />

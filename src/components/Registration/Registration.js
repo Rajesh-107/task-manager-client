@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { RegistrationRequest } from "../../APIRequest/APIRequest";
 import { ErrorToast, IsEmail, IsEmpty, IsMobile } from "../../Helper/FormHelper";
 
 const Registration = () => {
+  let navigate = useNavigate()
   let emailRef,
     firstNameRef,
     lastNameRef,
@@ -35,7 +37,7 @@ const Registration = () => {
     else{
         RegistrationRequest(email, firstName, lastName, mobile,password, "").then((result) =>{
             if(result === true){
-                
+              navigate('/Login')
             }
         })
     }
