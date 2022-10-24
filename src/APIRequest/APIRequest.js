@@ -1,6 +1,8 @@
 import axios from "axios";
 import { ErrorToast, SuccessToast } from "../Helper/FormHelper";
 import { getToken, setToken, setUserDetails } from "../Helper/SessionHelper";
+import { SetCanceledTask, SetCompletedTask, SetNewTask, SetProgressTask } from "../redux/slice/taskSlice";
+import Store from "../redux/store/Store";
 
 const AxiosHeader = {headers: {"token": getToken()}}
 
@@ -95,4 +97,31 @@ export function RegistrationRequest(
     ErrorToast("Something Went Wrong")
     return false;
   })
+}
+
+export function TaskListByStatus(Status){
+  let URL = BaseURL + "/listTaskByStatus/" + Status;
+
+  axios.get(URL, AxiosHeader).then((res) => {
+    if(res.status === 200){
+      if(Status === "New"){
+        Store.dispatch(SetNewTask(res.data['data']))
+      }
+      else if(Status === "Completed"){
+        Store.dispatch(SetCompletedTask(res.data['data']))
+      }
+      else if(Status === "Canceled"){
+        Store.dispatch(SetCanceledTask(res.data['data']))
+      }
+      else if(Status === "Progress"){
+        Store.dispatch(SetProgressTask(res.data['data']))
+      }
+    }
+    else{
+      ErrorToast('Something not good')
+    }
+  }).catch((err) => {
+    ErrorToast("Something not good")
+   
+  });
 }
