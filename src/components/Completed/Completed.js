@@ -5,6 +5,7 @@ import {
   AiOutlineDelete,
   AiOutlineEdit,
 } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { TaskListByStatus } from "../../APIRequest/APIRequest";
 
 const Completed = () => {
@@ -12,6 +13,9 @@ const Completed = () => {
   useEffect(() =>{
     TaskListByStatus("Completed")
   },[])
+
+  const CompletedList = useSelector((state) => state.task.Completed)
+
 
   return (
     <>

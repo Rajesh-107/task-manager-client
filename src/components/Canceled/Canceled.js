@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { AiOutlineCalendar, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
 import { TaskListByStatus } from '../../APIRequest/APIRequest';
 
 const Canceled = () => {
@@ -8,6 +9,8 @@ const Canceled = () => {
   useEffect(() =>{
     TaskListByStatus("Canceled")
   },[])
+
+  const CanceledList = useSelector((state) => state.task.Canceled)
 
     return (
         <>

@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { AiOutlineCalendar, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
 import { TaskListByStatus } from '../../APIRequest/APIRequest';
 
 const New = () => {
   useEffect(() =>{
     TaskListByStatus("New")
   },[])
+
+  const NewList = useSelector((state) => state.task.New)
 
     return (
         <>
