@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ErrorToast, SuccessToast } from "../Helper/FormHelper";
 import { getToken, setToken, setUserDetails } from "../Helper/SessionHelper";
+import { HideLoader, ShowLoader } from "../redux/slice/Settingslice";
 import { SetCanceledTask, SetCompletedTask, SetNewTask, SetProgressTask } from "../redux/slice/taskSlice";
 import Store from "../redux/store/Store";
 
@@ -9,11 +10,13 @@ const AxiosHeader = {headers: {"token": getToken()}}
 const BaseURL = "https://task-manager-server-rosy.vercel.app/api/v1";
 
 export function NewTaskRequest(title, description){
+  Store.dispatch(ShowLoader())
   let URL = BaseURL+ "/createTask";
   let PostBody = {"title": title, "description":description, status: "New"}
 
   return axios.post(URL, PostBody,AxiosHeader).then(res => {
-
+    
+    // Store.dispatch(HideLoader())
     if(res.status === 200){
     
       SuccessToast("New Task Created")
@@ -26,15 +29,17 @@ export function NewTaskRequest(title, description){
 
   }).catch((err) => {
     ErrorToast('Something not good')
+    // Store.dispatch(HideLoader())
     return false;
   })
 }
 
 export function LoginRequest(email, password){
+  // Store.dispatch(ShowLoader())
   let URL = BaseURL+ "/UserLogin";
 
   let PostBody = {"email": email, "password":password}
-
+  // Store.dispatch(HideLoader())
   return axios.post(URL, PostBody).then(res => {
     if(res.status === 200){
       setToken(res.data['token']);
@@ -48,6 +53,8 @@ export function LoginRequest(email, password){
     }
   }).catch(err => {
     ErrorToast('Something not good')
+    // Store.dispatch(HideLoader())
+    return false;
   })
 }
 
@@ -118,10 +125,10 @@ export function TaskListByStatus(Status){
       }
     }
     else{
-      ErrorToast('Something not good')
+      ErrorToast('Something went good')
     }
   }).catch((err) => {
-    ErrorToast("Something not good")
-   
+    ErrorToast("Something went good")
+    // Store.dispatch(HideLoader())
   });
 }

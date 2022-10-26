@@ -5,7 +5,7 @@ const FullscreenLoader = () => {
 //    const loader = useSelector((state) => state.settings.loader)
     return (
         <Fragment>
-            <div className={ "LoadingOverlay d-none"}>
+            <div className={ "LoadingOverlay"}>
                 <div className="Line-Progress">
                     <div className="indeterminate"></div>
                 </div>

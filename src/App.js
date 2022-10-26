@@ -38,7 +38,7 @@ function App() {
           
         </Routes>
        </BrowserRouter>
-       <FullscreenLoader/>
+       {/* <FullscreenLoader/> */}
        <ToastContainer/>
       </>
     );
@@ -58,7 +58,7 @@ function App() {
           
         </Routes>
        </BrowserRouter>
-       <FullscreenLoader/>
+       {/* <FullscreenLoader/> */}
        <ToastContainer/>
       </>
     );
