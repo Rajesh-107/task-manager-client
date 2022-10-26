@@ -35,7 +35,7 @@ const New = () => {
         </div>
         <div className="row p-0 m-0">
           {NewList.map((item, i) => 
-            <div className="col-12 col-lg-4 col-sm-6 col-md-4  p-2">
+            <div key={i.toString()} className="col-12 col-lg-4 col-sm-6 col-md-4  p-2">
               <div className="card h-100">
                 <div className="card-body">
                   <h6 className="animated fadeInUp">{item.title}</h6>
