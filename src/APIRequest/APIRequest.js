@@ -2,6 +2,7 @@ import axios from "axios";
 import { ErrorToast, SuccessToast } from "../Helper/FormHelper";
 import { getToken, setToken, setUserDetails } from "../Helper/SessionHelper";
 import { HideLoader, ShowLoader } from "../redux/slice/Settingslice";
+import { SetSummary } from "../redux/slice/SummarySlice";
 import { SetCanceledTask, SetCompletedTask, SetNewTask, SetProgressTask } from "../redux/slice/taskSlice";
 import Store from "../redux/store/Store";
 
@@ -131,4 +132,55 @@ export function TaskListByStatus(Status){
     ErrorToast("Something went good")
     // Store.dispatch(HideLoader())
   });
+}
+
+export function SummaryRequest(){
+  let URL = BaseURL +"/taskStatusCount"
+
+  axios.get(URL,AxiosHeader).then((res) => {
+    if(res.status === 200){
+      Store.dispatch(SetSummary(res.data['data']))
+    }
+    else{
+      ErrorToast("Something went wrong")
+    }
+  }).catch((err) => {
+    ErrorToast("Something went wrong")
+    
+  })
+}
+
+export function DeleteRequest(id){
+  let URL = BaseURL+ "/deleteTask/"+id;
+
+  return axios.get(URL, AxiosHeader).then((res) => {
+    if(res.status === 200){
+      SuccessToast("Delete Successful")
+      return true ;
+    }
+    else {
+      ErrorToast("went wrong")
+      return false;
+    }
+  }).catch((err) => {
+    ErrorToast('went wrong')
+   return false;
+  })
+}
+export function UpdateStatusRequest(id, status){
+  let URL = BaseURL+ "/updateTaskStatus/"+id + "/" + status;
+
+  return axios.get(URL, AxiosHeader).then((res) => {
+    if(res.status === 200){
+      SuccessToast("Delete Successful")
+      return true ;
+    }
+    else {
+      ErrorToast("went wrong")
+      return false;
+    }
+  }).catch((err) => {
+    ErrorToast('went wrong')
+   return false;
+  })
 }

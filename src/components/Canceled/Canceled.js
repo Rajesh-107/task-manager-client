@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { AiOutlineCalendar, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { TaskListByStatus } from '../../APIRequest/APIRequest';
+import { DeletedTodo } from '../../Helper/DeleteAlret';
+import { UpdateTodo } from '../../Helper/UpdateAlret';
 
 const Canceled = () => {
 
@@ -11,6 +14,17 @@ const Canceled = () => {
   },[])
 
   const CanceledList = useSelector((state) => state.task.Canceled)
+  const DeleteItem = (id) =>{
+    DeletedTodo(id)
+  }
+
+  const StatusChangeItem = (id, status) =>{
+    UpdateTodo(id, status).then((res) => {
+     if(res === true){
+       TaskListByStatus("Canceled");
+     }
+    })
+   }
 
     return (
         <>
@@ -39,13 +53,17 @@ const Canceled = () => {
                   <p className="animated fadeInUp">{item.description}</p>
                   <p className="m-0 animated fadeInUp p-0">
                     <AiOutlineCalendar /> {item.createdDate}
-                    <a className="icon-nav text-primary mx-1">
+                    <Link 
+                    onClick={StatusChangeItem.bind(this, item._id, item.status)}
+                    className="icon-nav text-primary mx-1">
                       <AiOutlineEdit />
-                    </a>
-                    <a className="icon-nav text-danger mx-1">
+                    </Link>
+                    <Link 
+                    onClick={DeleteItem.bind(this, item._id)}
+                    className="icon-nav text-danger mx-1">
                       <AiOutlineDelete />
-                    </a>
-                    <a className="badge float-end bg-danger">{item.status}</a>
+                    </Link>
+                    <Link className="badge float-end bg-danger">{item.status}</Link>
                   </p>
                 </div>
               </div>
