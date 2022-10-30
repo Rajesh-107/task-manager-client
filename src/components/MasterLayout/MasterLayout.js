@@ -13,6 +13,7 @@ import logo from "../../assets/img/logo.svg";
 import {MdOutlineCancelPresentation} from "react-icons/md";
 import { RiDashboardLine} from "react-icons/ri";
 import user from "../../assets/img/user.png"
+import { removeSessions } from "../../Helper/SessionHelper";
 // import {getUserDetails, removeSessions} from "../../helper/SessionHelper";
 
 
@@ -22,7 +23,7 @@ const MasterLayout = (props) => {
     let contentRef,sideNavRef=useRef();
 
     const onLogout=()=>{
-        // removeSessions();
+        removeSessions()
     }
 
     
